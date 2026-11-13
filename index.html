@@ -3,85 +3,211 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#171b45">
+  <meta name="theme-color" content="#0f172a">
   <title>Christmas Secret Santa Event</title>
   <style>
     * { box-sizing: border-box; }
     :root {
-      --ink: #f8f6ff;
-      --muted: #d4d1f4;
-      --panel: rgba(255,255,255,.10);
-      --line: rgba(255,255,255,.20);
-      --accent: #b99aff;
+      --ink: #f8fafc;
+      --muted: #cbd5e1;
+      --panel: rgba(255, 255, 255, 0.08);
+      --line: rgba(255, 255, 255, 0.18);
+      --accent: #38bdf8;
+      --gold: #fbbf24;
+      --festive-red: #ef4444;
+      --festive-green: #10b981;
     }
     body {
-      min-height: 100vh; margin: 0; padding: 28px 16px;
-      display: grid; place-items: center; overflow-x: hidden;
+      min-height: 100vh;
+      margin: 0;
+      padding: 28px 16px;
+      display: grid;
+      place-items: center;
+      overflow-x: hidden;
       color: var(--ink);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background:
-        radial-gradient(circle at 15% 15%, rgba(81,116,255,.45), transparent 34%),
-        radial-gradient(circle at 85% 85%, rgba(164,75,230,.45), transparent 36%),
-        linear-gradient(135deg, #101b48 0%, #29205f 48%, #512b78 100%);
+        radial-gradient(circle at 18% 18%, rgba(16, 185, 129, 0.25), transparent 36%),
+        radial-gradient(circle at 82% 82%, rgba(239, 68, 68, 0.25), transparent 38%),
+        radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.22), transparent 45%),
+        linear-gradient(145deg, #090d16 0%, #111827 50%, #1e1b4b 100%);
     }
-    .snow { position: fixed; inset: 0; pointer-events: none; opacity: .42;
-      background-image: radial-gradient(2px 2px at 20px 30px,#fff 98%,transparent),
-        radial-gradient(1.5px 1.5px at 90px 110px,#fff 98%,transparent),
-        radial-gradient(2px 2px at 160px 60px,#fff 98%,transparent);
-      background-size: 190px 160px;
+    .snow {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.45;
+      background-image:
+        radial-gradient(2px 2px at 20px 30px, #fff 98%, transparent),
+        radial-gradient(1.5px 1.5px at 90px 110px, #fff 98%, transparent),
+        radial-gradient(2px 2px at 160px 60px, #fff 98%, transparent),
+        radial-gradient(1px 1px at 45px 140px, #fff 98%, transparent);
+      background-size: 200px 170px;
+      animation: snowfall 18s linear infinite;
+    }
+    @keyframes snowfall {
+      from { background-position: 0 0; }
+      to { background-position: 0 170px; }
     }
     .card {
-      position: relative; width: min(100%, 480px); padding: clamp(28px, 6vw, 44px);
-      border: 1px solid var(--line); border-radius: 28px;
-      background: linear-gradient(145deg, rgba(255,255,255,.15), rgba(255,255,255,.07));
-      box-shadow: 0 24px 80px rgba(5,7,35,.38);
-      backdrop-filter: blur(18px);
+      position: relative;
+      width: min(100%, 470px);
+      padding: clamp(28px, 6vw, 44px);
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.04));
+      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(20px);
     }
-    .ornament { text-align: center; font-size: 34px; margin-bottom: 12px; }
-    h1 { text-align: center; font-size: clamp(2rem, 7vw, 2.7rem); line-height: 1.12;
-      letter-spacing: -.045em; margin: 0; }
-    .subtitle { color: var(--muted); text-align: center; line-height: 1.6; margin: 15px 0 30px; }
-    label { display: block; font-size: .92rem; font-weight: 650; margin: 18px 0 8px; }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin: 0 auto 14px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #fde68a;
+      background: rgba(251, 191, 36, 0.14);
+      border: 1px solid rgba(251, 191, 36, 0.3);
+    }
+    .header-wrap {
+      text-align: center;
+    }
+    h1 {
+      text-align: center;
+      font-size: clamp(1.9rem, 6.5vw, 2.55rem);
+      line-height: 1.12;
+      letter-spacing: -0.04em;
+      margin: 0;
+      background: linear-gradient(to right, #ffffff, #e2e8f0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle {
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.6;
+      font-size: 0.96rem;
+      margin: 14px 0 28px;
+    }
+    .field-group {
+      margin-bottom: 18px;
+    }
+    label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #e2e8f0;
+      margin-bottom: 7px;
+    }
     input {
-      width: 100%; border: 1px solid rgba(255,255,255,.22); border-radius: 13px;
-      padding: 15px 16px; color: #211c43; background: rgba(255,255,255,.96);
-      font: inherit; outline: none; transition: box-shadow .2s, border-color .2s;
+      width: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 13px;
+      padding: 14px 16px;
+      color: #0f172a;
+      background: rgba(255, 255, 255, 0.96);
+      font: inherit;
+      font-size: 0.98rem;
+      outline: none;
+      transition: box-shadow 0.2s, border-color 0.2s, transform 0.15s;
     }
-    input:focus { border-color: #c9b2ff; box-shadow: 0 0 0 4px rgba(201,178,255,.2); }
+    input:focus {
+      border-color: #38bdf8;
+      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.25);
+    }
     button {
-      width: 100%; border: 0; border-radius: 13px; padding: 15px 18px; margin-top: 25px;
-      color: white; font: inherit; font-weight: 750; font-size: 1rem; cursor: pointer;
-      background: linear-gradient(100deg, #527bff, #a65be8);
-      box-shadow: 0 10px 26px rgba(112,91,235,.34); transition: transform .18s, filter .18s;
+      width: 100%;
+      border: 0;
+      border-radius: 13px;
+      padding: 15px 18px;
+      margin-top: 10px;
+      color: #ffffff;
+      font: inherit;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      background: linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%);
+      box-shadow: 0 10px 25px rgba(16, 185, 129, 0.32);
+      transition: transform 0.18s, filter 0.18s, box-shadow 0.18s;
     }
-    button:hover { transform: translateY(-2px); filter: brightness(1.08); }
-    button:disabled { opacity: .65; cursor: wait; transform: none; }
-    .notice { color: #d6d2f5; font-size: .78rem; line-height: 1.5; margin: 16px 2px 0; text-align: center; }
-    #status { min-height: 24px; margin-top: 15px; text-align: center; font-size: .9rem; }
-    #status.success { color: #baf5d0; }
-    #status.error { color: #ffd0d9; }
-    .footer { text-align: center; color: rgba(255,255,255,.65); font-size: .75rem; margin-top: 24px; }
+    button:hover:not(:disabled) {
+      transform: translateY(-2px);
+      filter: brightness(1.08);
+      box-shadow: 0 14px 30px rgba(16, 185, 129, 0.42);
+    }
+    button:disabled {
+      opacity: 0.65;
+      cursor: wait;
+      transform: none;
+    }
+    #status {
+      min-height: 24px;
+      margin-top: 16px;
+      padding: 0 8px;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 500;
+      line-height: 1.45;
+      border-radius: 10px;
+      transition: all 0.2s ease;
+    }
+    #status.success {
+      padding: 10px 12px;
+      color: #a7f3d0;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+    }
+    #status.error {
+      padding: 10px 12px;
+      color: #fecdd3;
+      background: rgba(244, 63, 94, 0.16);
+      border: 1px solid rgba(244, 63, 94, 0.35);
+    }
+    .notice {
+      color: #94a3b8;
+      font-size: 0.76rem;
+      line-height: 1.5;
+      margin: 18px 2px 0;
+      text-align: center;
+    }
+    .footer {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.75rem;
+      margin-top: 22px;
+    }
   </style>
 </head>
 <body>
   <div class="snow" aria-hidden="true"></div>
   <main class="card">
-    <div class="ornament" aria-hidden="true">🎄 ✨ 🎁</div>
-    <h1>Christmas<br>Secret Santa Event</h1>
-    <p class="subtitle">A little mystery, a little magic, and a whole lot of Christmas spirit. Sign up below!</p>
+    <div class="header-wrap">
+      <div class="badge">🎄 Holiday Gift Exchange 🎁</div>
+      <h1>Christmas<br>Secret Santa Event</h1>
+      <p class="subtitle">A little mystery, a little magic, and a whole lot of Christmas spirit. Sign up below to join the exchange!</p>
+    </div>
 
-    <form id="signup-form">
-      <label for="name">Your Name</label>
-      <input id="name" name="name" type="text" placeholder="Enter your name" autocomplete="name" maxlength="100" required>
+    <form id="signup-form" novalidate>
+      <div class="field-group">
+        <label for="name">Your Name</label>
+        <input id="name" name="name" type="text" placeholder="e.g. Alex Rivera" autocomplete="name" maxlength="100" required>
+      </div>
 
-      <label for="email">Your Email</label>
-      <input id="email" name="email" type="email" placeholder="Enter your email address" autocomplete="email" maxlength="254" required>
+      <div class="field-group">
+        <label for="email">Your Email</label>
+        <input id="email" name="email" type="email" placeholder="e.g. alex@example.com" autocomplete="email" maxlength="254" required>
+      </div>
 
       <button id="submit-button" type="submit">Join the Event ✨</button>
       <div id="status" role="status" aria-live="polite"></div>
     </form>
 
-    <p class="notice">By submitting, you agree to have your name and email recorded for organizing this Secret Santa event. Your details should only be used for this event.</p>
+    <p class="notice">By submitting, you agree to have your name and email recorded for organizing this Secret Santa event. Your details will only be used for this event.</p>
     <div class="footer">Made with Christmas spirit ♡</div>
   </main>
 
@@ -93,44 +219,69 @@
     const button = document.getElementById("submit-button");
     const statusBox = document.getElementById("status");
 
+    function showStatus(message, type) {
+      statusBox.textContent = message;
+      statusBox.className = type;
+    }
+
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
-      statusBox.textContent = "";
-      statusBox.className = "";
+      showStatus("", "");
 
-      if (SCRIPT_URL.includes("PASTE_YOUR_")) {
-        statusBox.textContent = "The signup form hasn't been connected yet. Please contact the event organizer.";
-        statusBox.className = "error";
+      const cleanUrl = SCRIPT_URL.trim();
+
+      if (!cleanUrl || cleanUrl.includes("PASTE_YOUR_")) {
+        showStatus("The signup form isn't connected yet. Please paste your Web App URL in index.html.", "error");
+        return;
+      }
+
+      if (!cleanUrl.startsWith("https://script.google.com/") || !cleanUrl.endsWith("/exec")) {
+        showStatus("Invalid Web App URL. Make sure it starts with https://script.google.com/ and ends with /exec.", "error");
         return;
       }
 
       const name = document.getElementById("name").value.trim();
       const email = document.getElementById("email").value.trim();
 
-      if (!name || !email) {
-        statusBox.textContent = "Please enter both your name and email.";
-        statusBox.className = "error";
+      if (!name) {
+        showStatus("Please enter your name.", "error");
+        return;
+      }
+
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showStatus("Please enter a valid email address.", "error");
         return;
       }
 
       button.disabled = true;
-      button.textContent = "Submitting...";
+      button.textContent = "Registering...";
+
       try {
-        // no-cors is used because Apps Script handles the POST from a static website.
-        // The browser cannot read the response, so this displays a submission notice,
-        // not a verified server-side receipt.
-        await fetch(SCRIPT_URL, {
+        // Sending JSON as text/plain avoids CORS preflight (OPTIONS) requests
+        // while allowing the browser to read the exact JSON response from Apps Script.
+        const response = await fetch(cleanUrl, {
           method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
-          body: new URLSearchParams({ name, email })
+          redirect: "follow",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify({ name, email })
         });
-        statusBox.textContent = "Your submission has been sent. Thank you for joining! 🎄";
-        statusBox.className = "success";
-        form.reset();
+
+        const rawText = await response.text();
+        let result;
+        try {
+          result = JSON.parse(rawText);
+        } catch (parseErr) {
+          throw new Error("Unexpected response from Google Apps Script. Check your deployment permissions ('Anyone').");
+        }
+
+        if (result.status === "success") {
+          showStatus("You're in! Your Secret Santa registration has been saved. 🎄", "success");
+          form.reset();
+        } else {
+          showStatus(result.message || "Could not save your registration. Please try again.", "error");
+        }
       } catch (error) {
-        statusBox.textContent = "Something went wrong. Please try again in a moment.";
-        statusBox.className = "error";
+        showStatus(error.message || "Connection error. Please check your internet or deployment settings.", "error");
       } finally {
         button.disabled = false;
         button.textContent = "Join the Event ✨";
